@@ -1,0 +1,17 @@
+
+    {
+      "email": "qamid@qamid.ru",
+      "password": "qamid",
+      "url": "https://qamid.tmweb.ru/client/index.php",
+      "day":".page-nav__day",
+      "passwordSad": "1234",
+      "movieTitle":".movie__title",
+      "buyingTitle":".buying__info-title",
+      "button":".acceptin-button",
+      "place":":nth-child(2) > :nth-child(3)"
+    }
+    
+ 
+  
+  
+  
