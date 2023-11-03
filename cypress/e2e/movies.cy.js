@@ -30,8 +30,9 @@ describe("test to check admin login", () => {
     cy.visit(admin.url);
   });
 
-  it("test to check admin login happy path", () => {
+  it.only("test to check admin login happy path", () => {
     cy.login(admin.email, admin.password);
+    cy.contains("Идёмвкино").should("be.visible");
     cy.contains("Администраторская").should("be.visible");
   });
 
