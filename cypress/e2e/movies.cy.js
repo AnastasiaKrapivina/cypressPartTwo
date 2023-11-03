@@ -32,7 +32,7 @@ describe("test to check admin login", () => {
 
   it("test to check admin login happy path", () => {
     cy.login(admin.email, admin.password);
-    cy.contains("Администраторррская").should("be.visible");
+    cy.contains("Администраторская").should("be.visible");
   });
 
   it("test to check admin login sad path", () => {
@@ -41,39 +41,26 @@ describe("test to check admin login", () => {
   });
 });
 
-describe.only("booking a movie", () => {
-  let session;
+describe("booking a movie", () => {
+  // let session;
   it("receiving a film from an available theater", () => {
     cy.visit(admin.url);
     cy.login(admin.email, admin.password);
 
-    // Не могу сообразить как мне выбрать доступный зал и по этому названию выбрать название фильма
-    // и сохранить это название в переменную для дальнейшего использования в тестах?
-
-    cy.get(".conf-step__seances-movie .conf-step__seances-movie-start")
-      .eq(4)
-      .invoke("text")
-      .then((text) => {
-        let film = text;
-        cy.wrap(film).as("film");
-      });
-
-    cy.get("@film").then((film) => {
-      expect(film).to.contain("10:00");
-      session = film;
-    });
+    cy.get(admin.seancesMovie)
+      .eq(5)
+      .should("have.attr", admin.filmData, admin.filmId);
   });
-  // Еще момент, предположим я сохранила название фильма,
-  // но по названию фильм не кликается, надо кликнуть на время сеанса? А как имея название фильмас кликнуть на время?
+
   it("booking a movie in an available room", () => {
     cy.visit(application.url);
     cy.get(application.day).eq(1).click();
 
-    cy.contains(session).click(); // Как тут пробросить переменную, значение которой находим в предыдущем тесте?
+    cy.get(`[${admin.filmData}=${admin.filmId}]`).click();
 
-    cy.get(application.buyingTitle).should("have.text", "Терминатор-заржавел");
+    cy.get(application.buyingTitle).should("have.text", "Унесенные ветром");
 
     cy.get(application.place).click();
-    cy.get(application.button).should("not.have.attr", "disabled");
+    cy.get(application.button).not("[disabled]");
   });
 });

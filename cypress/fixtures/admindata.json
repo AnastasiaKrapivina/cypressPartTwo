@@ -2,7 +2,11 @@
   {
     "email": "qamid@qamid.ru",
     "password": "qamid",
-    "url": "http://qamid.tmweb.ru/admin/"
+    "passwordSad": "1234",
+    "url": "http://qamid.tmweb.ru/admin/",
+    "seancesMovie": ".conf-step__seances-movie",
+    "filmData": "data-seance-id",
+    "filmId": "176"
 
   }
 
