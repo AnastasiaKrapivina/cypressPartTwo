@@ -4,11 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:adminmovie:chrome": "cypress run --record --group admin --spec 'cypress/e2e/adminmovie.cy.js' --browser chrome",
+    "test:movies:chrome": "cypress run --record --group movies --spec 'cypress/e2e/movies.cy.js' --browser chrome",
+    "test:parallel:chrome": "run-p -c test:adminmovie:chrome test:movies:chrome",
+    "test:adminmovie:edge": "cypress run --record --group admin --spec 'cypress/e2e/adminmovie.cy.js' --browser edge",
+    "test:movies:edge": "cypress run --record --group movies --spec 'cypress/e2e/movies.cy.js' --browser edge",
+    "test:parallel:edge": "run-p -c test:adminmovie:edge test:movies:edge",
+    "test:adminmovie:electron": "cypress run --record --group admin --spec 'cypress/e2e/adminmovie.cy.js' --browser electron",
+    "test:movies:electron": "cypress run --record --group movies --spec 'cypress/e2e/movies.cy.js' --browser electron",
+    "test:parallel:electron": "run-p -c test:adminmovie:electron test:movies:electron",
+    "test:parallel:chrome:electron": "run-p -c test:adminmovie:chrome test:movies:electron",
+    "test:booking:electron": "cypress run --record --group booking --spec 'cypress/e2e/booking/**/*' --browser electron",
+    "test:film:electron": "cypress run --record --group film --spec 'cypress/e2e/film/**/*' --browser chrome",
+    "test:booking:chrome": "cypress run --record --group booking --spec 'cypress/e2e/booking/**/*' --browser chrome",
+    "test:film:chrome": "cypress run --record --group film --spec 'cypress/e2e/film/**/*' --browser chrome",
+    "test:parallel:fail:chrome": "run-p -c test:booking:chrome test:film:chrome",
+    "test:booking:edge": "cypress run --record --group booking --spec 'cypress/e2e/booking/**/*' --browser edge",
+    "test:film:edge": "cypress run --record --group film --spec 'cypress/e2e/film/**/*' --browser edge",
+    "test:parallel:fail:edge": "run-p -c test:booking:edge test:film:edge",
+    "test:parallel:fail:chrome:electron": "run-p -c test:booking:chrome test:film:electron"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^13.4.0"
+    "cypress": "^13.4.0",
+    "npm-run-all": "^4.1.5"
   }
 }
